@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.cat3.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="com.example.cat3.ui.notification.NotificationFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/nav_evacuation"
+        android:name="com.example.cat3.ui.evacuation.EvacuationFragment"
+        android:label="Evacuation"
+        tools:layout="@layout/fragment_evacuation" />
+
+    <fragment
+        android:id="@+id/nav_donation"
+        android:name="com.example.cat3.ui.donation.DonationFragment"
+        android:label="Donation"
+        tools:layout="@layout/fragment_donation" />
+
+    <fragment
+        android:id="@+id/nav_volunteer"
+        android:name="com.example.cat3.ui.volunteer.VolunteerFragment"
+        android:label="Volunteer"
+        tools:layout="@layout/fragment_volunteer" />
+
+    <fragment
+        android:id="@+id/nav_aaa"
+        android:name="com.example.cat3.ui.aaa.AaaFragment"
+        android:label="Aaa"
+        tools:layout="@layout/fragment_aaa" />
+
+</navigation>
