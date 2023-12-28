@@ -10,7 +10,7 @@ public class UploadDonationViewModel extends ViewModel {
 
     public UploadDonationViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("ADMIN: This is Qr Upload fragment");
+        mText.setValue("UPLOAD QR (ADMIN)");
     }
 
     public LiveData<String> getText() {
