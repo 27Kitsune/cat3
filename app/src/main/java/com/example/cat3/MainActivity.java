@@ -1,12 +1,16 @@
 package com.example.cat3;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,10 +19,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cat3.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
+    TextView textView;
+    FirebaseUser user;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -26,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Firebase (if not already initialized)
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
+        //the nav template code
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -42,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        View headerView = navigationView.getHeaderView(0);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -51,6 +59,18 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        auth = FirebaseAuth.getInstance();
+        textView = headerView.findViewById(R.id.user_details);
+        user = auth.getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            textView.setText(user.getEmail());
+        }
     }
 
     @Override
@@ -65,5 +85,18 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    //nav template ending
+    //logout in main.xml
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if (item.getItemId() == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
