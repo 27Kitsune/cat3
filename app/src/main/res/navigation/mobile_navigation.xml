@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_donation" />
 
     <fragment
+        android:id="@+id/nav_Upload_donation"
+        android:name="com.example.cat3.ui.UploadQR.UploadDonationFragment"
+        android:label="Donation"
+        tools:layout="@layout/fragment_donation" />
+
+    <fragment
         android:id="@+id/nav_volunteer"
         android:name="com.example.cat3.ui.volunteer.VolunteerFragment"
         android:label="Volunteer"
