@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/Upload_Qr_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_width="393dp"
+        android:layout_height="57dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -18,7 +18,7 @@
         android:layout_marginStart="-2dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="548dp"
+        android:layout_marginBottom="582dp"
         android:text="HI"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -27,29 +27,29 @@
     <ImageView
         android:id="@+id/Image_Upload_Qr"
         android:layout_width="wrap_content"
-        android:layout_height="435dp"
+        android:layout_height="374dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="149dp" />
+        android:layout_marginBottom="191dp" />
 
     <ProgressBar
         android:id="@+id/progress_bar_uploadQR"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="474dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="373dp" />
+        android:layout_marginBottom="135dp" />
 
     <Button
         android:id="@+id/Button_Choose_Qr"
