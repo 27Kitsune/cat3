@@ -10,7 +10,7 @@ public class DonationViewModel extends ViewModel {
 
     public DonationViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("User Donation Fragment");
+        mText.setValue("1111Donation Section");
     }
 
     public LiveData<String> getText() {
