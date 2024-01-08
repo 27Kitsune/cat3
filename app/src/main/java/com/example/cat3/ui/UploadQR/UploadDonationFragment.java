@@ -50,6 +50,7 @@ public class UploadDonationFragment extends Fragment {
         mChooseQrButton = binding.ButtonChooseQr;
         mUploadQrProgressBar = binding.progressBarUploadQR;
 
+        mUploadQrProgressBar.setVisibility(View.GONE);
 
         final TextView mUploadQrText = binding.UploadQrText;
         UploaddonationViewModel.getText().observe(getViewLifecycleOwner(), mUploadQrText::setText);
@@ -89,11 +90,37 @@ public class UploadDonationFragment extends Fragment {
             if (mUploadQruri != null) {
                 StorageReference fileQrRef = UploadDonationStorage.child(System.currentTimeMillis() + "." + getImageQrExtension(mUploadQruri));
 
+//                fileQrRef.putFile(mUploadQruri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Handler handler = new Handler();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                mUploadQrProgressBar.setProgress(0);
+//                            }
+//                        }, 5000);
+//
+////                        String imageUrl;
+////                        imageUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+//
+//                        Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+//                        UploadQr auploadQr = new UploadQr(mUploadQruri.toString());
+//                        String uploadQrID = UploadDonationDatabase.push().getKey();
+//                        UploadDonationDatabase.child(uploadQrID).setValue(auploadQr);
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//            }).
                 fileQrRef.putFile(mUploadQruri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Handler handler = new Handler();
-                        mUploadQrProgressBar.setVisibility(View.GONE);
+
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -101,15 +128,24 @@ public class UploadDonationFragment extends Fragment {
                             }
                         }, 5000);
 
-                        Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
-                        UploadQr uploadQr = new UploadQr(mUploadQruri.toString());
-                        String uploadQrID = UploadDonationDatabase.push().getKey();
-                        UploadDonationDatabase.child(uploadQrID).setValue(uploadQr);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        // Get the download URL from the task snapshot
+                        taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri downloadUrl) {
+                                // Convert the Uri to a string and store it in the database
+                                String imageUrl = downloadUrl.toString();
+                                Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+
+                                UploadQr auploadQr = new UploadQr(imageUrl);
+                                String uploadQrID = UploadDonationDatabase.push().getKey();
+                                UploadDonationDatabase.child(uploadQrID).setValue(auploadQr);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Failed to get download URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
