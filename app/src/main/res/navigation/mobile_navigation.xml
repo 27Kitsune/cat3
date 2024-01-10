@@ -41,10 +41,4 @@
         android:label="Volunteer"
         tools:layout="@layout/fragment_volunteer" />
 
-    <fragment
-        android:id="@+id/nav_aaa"
-        android:name="com.example.cat3.ui.aaa.AaaFragment"
-        android:label="Aaa"
-        tools:layout="@layout/fragment_aaa" />
-
 </navigation>

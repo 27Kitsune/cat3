@@ -7,12 +7,11 @@
     android:layout_height="500dp"
     android:layout_gravity="center"
     android:background="#60000000"
-    tools:context=".ui.aaa.AaaFragment">
+    tools:context=".ui.volunteer.VolunteerFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:id="@+id/bevolunteer2"
         android:text="Volunteer Form"
         android:textSize="30sp"
@@ -23,10 +22,28 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/name2"
+        android:id="@+id/event1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bevolunteer2"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#30ffffff"
+        android:drawableStart="@drawable/volunteer_name"
+        android:drawablePadding="10dp"
+        android:hint="Event"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/name2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event1"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -39,6 +56,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         tools:ignore="HardcodedText" />
+
 
     <EditText
         android:id="@+id/number2"

@@ -28,10 +28,6 @@
             android:id="@+id/nav_volunteer"
             android:icon="@drawable/ic_menu_volunteer"
             android:title= "Volunteer" />
-        <item
-            android:id="@+id/nav_aaa"
-            android:icon="@drawable/ic_menu_volunteer"
-            android:title= "Aaa" />
 
     </group>
 </menu>

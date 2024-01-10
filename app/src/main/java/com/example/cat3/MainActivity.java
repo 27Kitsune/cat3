@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cat3.databinding.ActivityMainBinding;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
 
         //the nav template code
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_donation, R.id.nav_Upload_donation, R.id.nav_volunteer, R.id.nav_aaa)
+                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_donation, R.id.nav_Upload_donation, R.id.nav_volunteer)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
