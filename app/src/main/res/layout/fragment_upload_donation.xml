@@ -1,85 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.UploadQR.UploadDonationFragment">
-
-    <TextView
-        android:id="@+id/Upload_Qr_Text"
-        android:layout_width="393dp"
-        android:layout_height="57dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="582dp"
-        android:text="HI"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+    tools:context="com.example.cat3.ui.UploadQR.UploadDonationFragment"
+    android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/Image_Upload_Qr"
-        android:layout_width="wrap_content"
-        android:layout_height="374dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="191dp" />
-
-    <ProgressBar
-        android:id="@+id/progress_bar_uploadQR"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="474dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="135dp" />
-
-    <Button
-        android:id="@+id/Button_Choose_Qr"
-        android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="101dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="74dp"
-        android:text="Choose qr"
-        android:textSize="10sp" />
+        android:layout_gravity="top"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/uploadqr"
+        />
 
-    <Button
-        android:id="@+id/Button_Upload_Qr"
-        android:layout_width="210dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="102dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="13dp"
-        android:text="Upload qr"
-        android:textAlignment="center"
-        android:textSize="10sp"
-        tools:ignore="RtlCompat" />
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/green_boarder"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/uploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/greenupload" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/green_2"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/uploadCaption"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/green_boarder"
+                android:hint="Add a caption..."
+                android:padding="16dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/uploadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/green_2"
+                android:src="@drawable/send_icon"
+                app:tint="@color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
