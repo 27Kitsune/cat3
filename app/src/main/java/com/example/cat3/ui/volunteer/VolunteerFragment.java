@@ -223,13 +223,15 @@ public class VolunteerFragment extends Fragment {
                 String number = numberEditText.getText().toString();
                 String email = emailEditText.getText().toString();
 
-                // Upload the selected image to Firebase Storage
-                uploadImageToFirebaseStorage(selectedImageUri);
-
                 // check if all fields are filled
-                if (TextUtils.isEmpty(event) || TextUtils.isEmpty(location) || TextUtils.isEmpty(name) || TextUtils.isEmpty(number) || TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(number) || TextUtils.isEmpty(email)) {
                     Toast.makeText(getActivity(), "Fill all fields.", Toast.LENGTH_SHORT).show();
                 } else {
+                    // Check if an image is selected
+                    if (selectedImageUri != null) {
+                        // Upload the selected image to Firebase Storage
+                        uploadImageToFirebaseStorage(selectedImageUri);
+                    }
 
                     // Save data to Firebase
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -244,6 +246,7 @@ public class VolunteerFragment extends Fragment {
 
                     // Clear the EditText fields after submitting
                     eventEditText.setText("");
+                    locationEditText.setText("");
                     nameEditText.setText("");
                     numberEditText.setText("");
                     emailEditText.setText("");

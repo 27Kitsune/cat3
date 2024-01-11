@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "cat3"
 include(":app")
+include(":admin")
  

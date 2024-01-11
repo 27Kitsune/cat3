@@ -16,7 +16,7 @@ public class VolunteerData {
         // Default constructor required for Firebase
     }
 
-    public VolunteerData(String event1, String location1, String name1, String number1, String email1,String imageUrl1, String name2, String number2, String email2) {
+    public VolunteerData(String event1, String location1, String name1, String number1, String email1, String imageUrl1, String name2, String number2, String email2) {
         this.event1 = event1;
         this.location1 = location1;
         this.name1 = name1;
@@ -88,7 +88,5 @@ public class VolunteerData {
         return email2;
     }
 
-    public void setEmail2(String email2) {
-        this.email2 = email2;
-    }
+    public void setEmail2(String email2) { this.email2 = email2; }
 }
