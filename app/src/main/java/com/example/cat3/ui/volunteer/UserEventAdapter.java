@@ -8,16 +8,19 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.cat3.R;
+import com.example.cat3.ui.volunteeradmin.VolunteeradminFragment;
 
 import java.util.List;
 
-public class EventAdapter extends BaseAdapter {
+public class UserEventAdapter extends BaseAdapter {
     private List<VolunteerData> eventList;
     private Context context;
+    private VolunteerFragment volunteerFragment;
 
-    public EventAdapter(Context context, List<VolunteerData> eventList) {
+    public UserEventAdapter(Context context, List<VolunteerData> eventList, VolunteerFragment fragment) {
         this.context = context;
         this.eventList = eventList;
+        this.volunteerFragment = fragment;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class EventAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_event, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.user_list_item_event, parent, false);
         }
 
         VolunteerData volunteerData = eventList.get(position);
@@ -52,6 +55,13 @@ public class EventAdapter extends BaseAdapter {
         } else {
             textLocation.setVisibility(View.GONE);
         }
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle item click
+                volunteerFragment.showEventDetailsPopup2(volunteerData);
+            }
+        });
 
         return convertView;
     }

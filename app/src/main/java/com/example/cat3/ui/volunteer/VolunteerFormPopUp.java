@@ -2,6 +2,7 @@ package com.example.cat3.ui.volunteer;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,15 +27,17 @@ public class VolunteerFormPopUp {
 
         // Initialize Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference recruitRef = database.getReference("Recruit_data");
-        DatabaseReference volunteerRef = database.getReference("Volunteer_data");
+        DatabaseReference recruitRef = database.getReference("Approved_Events");
+        DatabaseReference volunteerRef = database.getReference("Pending_Volunteer_Forms");
 
         // Find the submit2 button, name2, number2, and email2 in the popup layout
         com.google.android.material.button.MaterialButton submitButton = popupView.findViewById(R.id.submit2);
         EditText eventEditText = popupView.findViewById(R.id.event1);
         EditText nameEditText = popupView.findViewById(R.id.name2);
+        EditText icEditText = popupView.findViewById(R.id.ic2);
         EditText numberEditText = popupView.findViewById(R.id.number2);
         EditText emailEditText = popupView.findViewById(R.id.email2);
+
 
         // Set a click listener for the submit button
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -45,9 +48,10 @@ public class VolunteerFormPopUp {
                 String name = nameEditText.getText().toString();
                 String number = numberEditText.getText().toString();
                 String email = emailEditText.getText().toString();
+                String ic = icEditText.getText().toString();
 
                 // check if all fields are filled
-                if (TextUtils.isEmpty(event) || TextUtils.isEmpty(name) || TextUtils.isEmpty(number) || TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(event) || TextUtils.isEmpty(name) || TextUtils.isEmpty(ic) || TextUtils.isEmpty(number) || TextUtils.isEmpty(email)) {
                     showToast(context, "Fill all fields.");
                 } else {
                     // Check if the entered event exists in the recruit data
@@ -56,7 +60,7 @@ public class VolunteerFormPopUp {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 // Save data to Firebase
-                                VolunteerData volunteerData = new VolunteerData(event, null, null, null, null,null, name, number, email);
+                                VolunteerData volunteerData = new VolunteerData(event, null, null, null, null, null,null, name, number, email, ic, null);
                                 volunteerRef.push().setValue(volunteerData);
 
                                 // Display a toast message
@@ -65,8 +69,17 @@ public class VolunteerFormPopUp {
                                 // Clear the EditText fields after submitting
                                 eventEditText.setText("");
                                 nameEditText.setText("");
+                                icEditText.setText("");
                                 numberEditText.setText("");
                                 emailEditText.setText("");
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Show the Toast after the delay
+                                        showToast(context, "Thank you for your application. Our team will evaluate your submission.");
+                                    }
+                                }, 5000); // 5000 milliseconds (5 seconds) delay
                             } else {
                                 // Display a toast message if the event doesn't exist
                                 showToast(context, "Event does not exist.");

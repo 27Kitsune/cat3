@@ -6,10 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.volunteer.VolunteerFragment">
 
+    <TextView
+        android:id="@+id/textFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Thank you for your application. Our team will evaluate your submission."
+        android:textColor="#1CA522"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        app:cardBackgroundColor="@color/green_2"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
@@ -27,6 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Recruit Volunteer"
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="18dp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
@@ -37,6 +54,7 @@
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        app:cardBackgroundColor="@color/green_2"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
@@ -54,6 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Be a Volunteer"
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="18dp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
@@ -70,7 +90,7 @@
         android:text="Available Event"
         android:textColor="@color/black"
         android:textSize="19sp"
-        android:textStyle="normal"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2"
         />
@@ -85,7 +105,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-24dp" />
+        tools:layout_editor_absoluteX="-24dp"
+        android:background="@android:color/transparent"
+        android:divider="@color/green_1"
+        android:dividerHeight="1.5dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

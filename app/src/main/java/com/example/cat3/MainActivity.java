@@ -1,4 +1,4 @@
-package com.example.cat3.user;
+package com.example.cat3;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.cat3.Login;
-import com.example.cat3.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_donation, R.id.nav_volunteer)
+                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_donation, R.id.nav_Upload_donation, R.id.nav_volunteer, R.id.nav_volunteeradmin)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -75,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             textView.setText(user.getEmail());
         }
-        navigationView.getMenu().clear(); // Clear existing items, if any
-        getMenuInflater().inflate(R.menu.activity_main_drawer, navigationView.getMenu());
     }
 
     @Override
