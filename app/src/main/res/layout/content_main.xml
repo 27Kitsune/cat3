@@ -7,6 +7,21 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
+    <TextView
+        android:id="@+id/text_donation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="User main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.031" />
     <fragment
         android:id="@+id/nav_host_fragment_content_main"
         android:name="androidx.navigation.fragment.NavHostFragment"

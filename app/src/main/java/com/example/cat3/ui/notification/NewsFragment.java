@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cat3.databinding.FragmentNotificationBinding;
 
-public class NotificationFragment extends Fragment {
+public class NewsFragment extends Fragment {
 
     private FragmentNotificationBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationViewModel notificationViewModel =
-                new ViewModelProvider(this).get(NotificationViewModel.class);
+        NewsViewModel newsViewModel =
+                new ViewModelProvider(this).get(NewsViewModel.class);
 
         binding = FragmentNotificationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotification;
-        notificationViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        newsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
