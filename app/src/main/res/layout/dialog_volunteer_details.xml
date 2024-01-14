@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- res/layout/dialog_event_details.xml -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <!-- Add a TextView for the title -->
+        <TextView
+            android:id="@+id/textTitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Volunteer Details"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Other TextViews for different details -->
+        <TextView
+            android:id="@+id/textEvent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTitle2"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textic2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTitle2"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textname2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textic2"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textnumber2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textname2"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textemail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textname2"
+            android:layout_marginTop="8dp" />
+
+
+        <!-- Add buttons for Approve and Deny at the bottom right -->
+        <LinearLayout
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/textnumber2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnApprove2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Approve"
+                android:backgroundTint="#7CB342"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btnDeny2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:text="Deny"
+                android:backgroundTint="#E53935"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--        &lt;!&ndash; Buttons for Approve and Deny &ndash;&gt;-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btnApprove"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:background="#FF8BC34A"-->
+    <!--                android:text="Approve"-->
+    <!--                android:textColor="@color/white" />-->
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btnDeny"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:text="Deny"-->
+    <!--                android:background="@color/ffe53935"-->
+    <!--                android:textColor="@android:color/white"/>-->
+    <!--        </LinearLayout>-->
+    <!--    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style for the AlertDialog buttons -->
+    <style name="AlertDialogButtonStyle" parent="Widget.AppCompat.Button">
+        <!-- Change the text color for positive (Approve) button to green -->
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
+    <!-- Style for the AlertDialog buttons -->
+    <style name="AlertDialogNegativeButtonStyle" parent="Widget.AppCompat.Button">
+        <!-- Change the text color for negative (Deny) button to red -->
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+</resources>

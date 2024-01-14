@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="password" type="id" />
+    <item name="progressBar" type="id" />
+    <item name="btn_register" type="id" />
+    <item name="loginNow" type="id" />
+    <item name="btn_login" type="id" />
+    <item name="registerNow" type="id" />
+</resources>
