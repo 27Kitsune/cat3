@@ -1,5 +1,6 @@
 package com.example.cat3.ui.donation;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class DonationFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         dataList = new ArrayList<>();
-        adapter = new UploadQrAdapter(requireContext(), dataList);
+        adapter = new UploadQrAdapter(requireContext(), dataList, DonationFragment.this);
         recyclerView.setAdapter(adapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -55,5 +56,26 @@ public class DonationFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Handle the permission result here
+        switch (requestCode) {
+            case 1: {
+                // Check if the permission is granted
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, handle accordingly
+                } else {
+                    // Permission denied, handle accordingly
+                }
+                return;
+            }
+            // Add more cases if you have multiple permissions to check
+
+            // ...
+        }
     }
 }
