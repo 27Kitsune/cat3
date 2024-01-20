@@ -22,15 +22,27 @@
             android:scaleType="centerCrop"/>
     </androidx.cardview.widget.CardView>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="caption"
-        android:textSize="18sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/green_2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="caption"
+    android:textSize="18sp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="10dp"
+    android:textColor="@color/green_2"
+    android:layout_gravity="center"
+    android:id="@+id/recyclerCaption"/>
+
+    <ImageView
+        android:id="@+id/download_qr"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:padding="3dp"
         android:layout_gravity="center"
-        android:id="@+id/recyclerCaption"/>
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Download Button"
+        android:src="@drawable/ic_download"/>
 </LinearLayout>
