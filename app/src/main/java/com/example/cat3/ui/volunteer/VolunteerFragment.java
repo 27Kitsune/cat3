@@ -327,7 +327,6 @@ public class VolunteerFragment extends Fragment {
     }
 
 
-
     private void showVolunteerRecruitPopup(View root) {
         // Inflate the volunteer_recruit.xml layout
         View popupView = getLayoutInflater().inflate(R.layout.volunteer_recruit, null);
