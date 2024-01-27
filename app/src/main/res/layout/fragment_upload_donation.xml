@@ -7,34 +7,37 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.cat3.ui.UploadQR.UploadDonationFragment"
-android:orientation="vertical">
+android:orientation="vertical"
+android:background="@drawable/backgroundwallpaper">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context="com.example.cat3.ui.UploadQR.UploadDonationFragment"
         android:orientation="horizontal">
-
-        <ImageView
+        <TextView
             android:id="@+id/uploadqrtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/uploadqr"/>
+            android:text="UPLOAD QR"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
 
         <LinearLayout
             android:id="@+id/firstLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/uploadqrtitle"
-            android:background="@drawable/green_boarder"
+            android:background="@drawable/black_border"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:backgroundTint="@color/white">
 
             <ImageView
                 android:id="@+id/uploadImage"
@@ -44,7 +47,7 @@ android:orientation="vertical">
                 android:layout_marginTop="30dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/greenupload" />
+                android:src="@drawable/uploadimage1" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -65,16 +68,17 @@ android:orientation="vertical">
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="0.6"
-                    android:background="@drawable/green_boarder"
+                    android:background="@drawable/black_border"
                     android:hint="Add a caption..."
-                    android:padding="16dp" />
+                    android:padding="16dp"
+                    android:outlineSpotShadowColor="@color/silver"/>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/uploadButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:backgroundTint="@color/green_2"
+                    android:backgroundTint="@color/black"
                     android:src="@drawable/send_icon"
                     android:contentDescription="Upload Button"
                     app:tint="@color/white" />
@@ -87,9 +91,12 @@ android:orientation="vertical">
             android:layout_height="wrap_content"
             android:layout_below="@id/firstLinearLayout"
             android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
             android:padding="10dp"
-            android:background="@drawable/green_boarder"
-            android:orientation="vertical">
+            android:background="@drawable/black_border"
+            android:orientation="vertical"
+            android:backgroundTint="@color/white">
 
             <Spinner
                 android:id="@+id/uploadqrspinner"
@@ -98,7 +105,8 @@ android:orientation="vertical">
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:spinnerMode="dropdown" />
+                android:background="@color/silver"
+                android:spinnerMode="dropdown"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

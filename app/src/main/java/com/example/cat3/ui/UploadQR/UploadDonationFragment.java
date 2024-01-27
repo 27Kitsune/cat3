@@ -130,6 +130,12 @@ public class UploadDonationFragment extends Fragment {
     private void uploadToFirebase(Uri uri){
         String caption = uploadCaption.getText().toString();
         final StorageReference imageReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
+
+        // Check if the caption is empty
+        if (caption.isEmpty()) {
+            Toast.makeText(getContext(), "Please put a caption", Toast.LENGTH_SHORT).show();
+            return; // Stop the upload process
+        }
         imageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -146,7 +152,7 @@ public class UploadDonationFragment extends Fragment {
                         adapter.notifyDataSetChanged();
                         Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
 
-                        uploadImage.setImageResource(R.drawable.greenupload);
+                        uploadImage.setImageResource(R.drawable.uploadimage1);
                         uploadCaption.setText(null);
                     }
                 });
