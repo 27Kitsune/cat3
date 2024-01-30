@@ -1,11 +1,14 @@
 package com.example.cat3.ui.Monitoring;
 
-import static androidx.core.content.ContextCompat.getSystemService;
+import static android.os.Build.VERSION_CODES.R;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cat3.R;
 import com.example.cat3.databinding.FragmentMonitoringBinding;
-//import com.example.cat3.user.Notification;
+import com.example.cat3.user.Notification;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -73,7 +76,7 @@ public class MonitoringFragment extends Fragment {
                         textViewDangerScale.setText("Moderate");
                     } else {
                         textViewDangerScale.setText("Danger");
-                        //callnotifunc
+                        makeNotificationWL();
                     }
                 }
             }
@@ -132,5 +135,70 @@ public class MonitoringFragment extends Fragment {
             accelerometerReference.removeEventListener(accelerometerValueEventListener);
         }
         binding = null;
+    }
+
+    public void makeNotificationWL() {
+        String channelID = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), channelID);
+        builder.setContentTitle("Danger! Water Level Exceeded")
+                .setContentText("Seek High Ground Immediately..")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        Intent intent = new Intent(getContext(), Notification.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("data", "Some value to be passed here");
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Check if the notification channel exists
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
+            if (notificationChannel == null) {
+                // If the channel doesn't exist, create it
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(channelID, "Some description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+
+        notificationManager.notify(0, builder.build());
+    }
+
+    private void makeEarthquakeNotification() {
+        String channelID = "CHANNEL_ID_EARTHQUAKE";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), channelID);
+        builder.setContentTitle("Earthquake Detected")
+                .setContentText("Take cover and stay safe!")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        Intent intent = new Intent(getContext(), Notification.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("data", "Some value to be passed here");
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Check if the notification channel exists
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
+            if (notificationChannel == null) {
+                // If the channel doesn't exist, create it
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(channelID, "Earthquake Notifications", importance);
+                notificationChannel.setLightColor(Color.RED);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+
+        notificationManager.notify(1, builder.build()); // Use a different notification ID for earthquakes
     }
 }
