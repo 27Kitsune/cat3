@@ -33,7 +33,7 @@ public class DonationFragment extends Fragment {
         binding = FragmentDonationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        recyclerView = binding.recyclerView;
+        recyclerView = binding.qrRecyclerView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 

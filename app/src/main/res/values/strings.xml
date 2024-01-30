@@ -20,4 +20,5 @@
     <string name="email">Email</string>
     <string name="submit">SUBMIT</string>
     <string name="fullname" />
+    <string name="click_here_for_more_info"><u>Click Here For More Info</u></string>
 </resources>
