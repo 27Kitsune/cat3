@@ -24,8 +24,6 @@ import com.example.cat3.databinding.ActivityMainBinding;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_donation, R.id.nav_volunteer, R.id.nav_volunteeradmin)
+                R.id.nav_home, R.id.nav_notification, R.id.nav_evacuation, R.id.nav_upload_news, R.id.nav_donation, R.id.nav_Upload_donation, R.id.nav_volunteer, R.id.nav_volunteeradmin)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -75,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             textView.setText(user.getEmail());
         }
-        navigationView.getMenu().clear(); // Clear existing items, if any
-        getMenuInflater().inflate(R.menu.activity_main_drawer, navigationView.getMenu());
     }
 
     @Override

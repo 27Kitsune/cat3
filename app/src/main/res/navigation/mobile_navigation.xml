@@ -19,9 +19,15 @@
 
     <fragment
         android:id="@+id/nav_evacuation"
-        android:name="com.example.cat3.ui.evacuation.EvacuationFragment"
+        android:name="com.example.cat3.ui.Monitoring.MonitoringFragment"
         android:label="Evacuation"
         tools:layout="@layout/fragment_evacuation" />
+
+    <fragment
+        android:id="@+id/nav_upload_news"
+        android:name="com.example.cat3.ui.UploadNews.UploadNewsFragment"
+        android:label="Donation"
+        tools:layout="@layout/fragment_upload_news" />
 
     <fragment
         android:id="@+id/nav_donation"
@@ -33,7 +39,7 @@
         android:id="@+id/nav_Upload_donation"
         android:name="com.example.cat3.ui.UploadQR.UploadDonationFragment"
         android:label="Donation"
-        tools:layout="@layout/fragment_donation" />
+        tools:layout="@layout/fragment_upload_donation" />
 
     <fragment
         android:id="@+id/nav_volunteer"

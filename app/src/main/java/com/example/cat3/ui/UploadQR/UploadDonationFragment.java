@@ -150,7 +150,7 @@ public class UploadDonationFragment extends Fragment {
                         list.clear();
                         fetchdata();
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
                         uploadImage.setImageResource(R.drawable.uploadimage1);
                         uploadCaption.setText(null);
@@ -166,7 +166,7 @@ public class UploadDonationFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to upload", Toast.LENGTH_SHORT).show();
             }
         });
     }
