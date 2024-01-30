@@ -2,7 +2,6 @@ package com.example.cat3.ui.donation;
 
 import static android.content.ContentValues.TAG;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class DonationFragment extends Fragment {
 
     private FragmentDonationBinding binding;
-//    FloatingActionButton fab;
     private RecyclerView recyclerView;
     private ArrayList<UploadQr> dataList;
     private UploadQrAdapter adapter;
