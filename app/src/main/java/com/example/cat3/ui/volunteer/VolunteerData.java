@@ -14,12 +14,15 @@ public class VolunteerData {
     private String email2;
     private String ic;
     private String eventId;
+    private String fcmToken;
+    private String userUid;
+
 
     public VolunteerData() {
         // Default constructor required for Firebase
     }
 
-    public VolunteerData(String event1, String location1, String date1, String name1, String number1, String email1, String imageUrl1, String name2, String number2, String email2, String ic, String eventId) {
+    public VolunteerData(String event1, String location1, String date1, String name1, String number1, String email1, String imageUrl1, String name2, String number2, String email2, String ic, String eventId, String fcmToken, String userUid) {
         this.event1 = event1;
         this.location1 = location1;
         this.date1 = date1;
@@ -32,6 +35,8 @@ public class VolunteerData {
         this.email2 = email2;
         this.ic = ic;
         this.eventId = eventId;
+        this.fcmToken = fcmToken;
+        this.userUid = userUid;
     }
 
     // Add getters and setters as needed
@@ -92,4 +97,10 @@ public class VolunteerData {
     public void setIc(String ic) { this.ic = ic; }
     public String getEventId() {return eventId; }
     public void setEventId(String eventId) { this.eventId = eventId; }
+    public String getFcmToken() { return fcmToken; }
+    public void setFcmToken(String fcmToken) { this.fcmToken = fcmToken; }
+    public String getUserUid() {
+        return userUid;
+    }
+    public void setUserUid(String userUid) { this.userUid = userUid; }
 }

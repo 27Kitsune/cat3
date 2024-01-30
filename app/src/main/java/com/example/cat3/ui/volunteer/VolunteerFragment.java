@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +29,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 import android.app.Activity;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 
 import androidx.fragment.app.Fragment;
@@ -149,7 +152,7 @@ public class VolunteerFragment extends Fragment {
         DatabaseReference myRef = database.getReference("Pending_Events");
 
         DatabaseReference newEventRef = myRef.push();  // Get a reference to the new event node
-        VolunteerData volunteerData = new VolunteerData(event, location, date, name, number, email, imageUrl, null, null, null, null, eventId);
+        VolunteerData volunteerData = new VolunteerData(event, location, date, name, number, email, imageUrl, null, null, null, null, eventId,null, null);
         // Use the obtained reference to set the value in the database
             newEventRef.setValue(volunteerData);
 
@@ -258,13 +261,23 @@ public class VolunteerFragment extends Fragment {
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // When cardView2 is clicked, show the volunteer_form.xml as a popup
-                VolunteerFormPopUp.showVolunteerFormPopup(requireContext(), root);
+                // Obtain the FCM token before showing the form popup
+                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            String fcmToken = task.getResult();
+                            // When cardView2 is clicked, show the volunteer_form.xml as a popup
+                            VolunteerFormPopUp.showVolunteerFormPopup(requireContext(), root, fcmToken);
+                        }
+                    }
+                });
             }
         });
 
         return root;
     }
+
 
     private void updateEventList(DataSnapshot dataSnapshot) {
         eventAdapter.clear();
@@ -302,9 +315,7 @@ public class VolunteerFragment extends Fragment {
         textEvent.setText("Event: " + volunteerData.getevent1() + "\n"
                 + "Location: " + volunteerData.getlocation1() + "\n"
                 + "Date: " + volunteerData.getDate1() + "\n"
-                + "Name: " + volunteerData.getName1() + "\n"
-                + "Number: " + volunteerData.getNumber1() + "\n"
-                + "Email: " + volunteerData.getEmail1());
+                + "Organizer Name: " + volunteerData.getName1());
 
         // Load the image from the URL using Picasso library
 

@@ -116,6 +116,7 @@ public class Register extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(),Login.class);
                                                 startActivity(intent);
                                                 finish();
+                                                Log.d("UID", "User UID: " + userId);
                                             }
                                         }
                                     });

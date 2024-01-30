@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.cat3.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class VolunteerFormPopUp {
 
-    public static void showVolunteerFormPopup(Context context, View root) {
+    public static void showVolunteerFormPopup(Context context, View root, String fcmToken) {
         // Use the provided context to get the LayoutInflater
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -50,6 +52,12 @@ public class VolunteerFormPopUp {
                 String email = emailEditText.getText().toString();
                 String ic = icEditText.getText().toString();
 
+                // Retrieve the current user's UID
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = auth.getCurrentUser();
+                String userUid = (currentUser != null) ? currentUser.getUid():"default";
+
+
                 // check if all fields are filled
                 if (TextUtils.isEmpty(event) || TextUtils.isEmpty(name) || TextUtils.isEmpty(ic) || TextUtils.isEmpty(number) || TextUtils.isEmpty(email)) {
                     showToast(context, "Fill all fields.");
@@ -60,7 +68,7 @@ public class VolunteerFormPopUp {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 // Save data to Firebase
-                                VolunteerData volunteerData = new VolunteerData(event, null, null, null, null, null,null, name, number, email, ic, null);
+                                VolunteerData volunteerData = new VolunteerData(event, null, null, null, null, null,null, name, number, email, ic, null, fcmToken, userUid);
                                 volunteerRef.push().setValue(volunteerData);
 
                                 // Display a toast message
