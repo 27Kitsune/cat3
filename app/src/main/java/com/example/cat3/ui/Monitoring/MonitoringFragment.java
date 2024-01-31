@@ -1,7 +1,5 @@
 package com.example.cat3.ui.Monitoring;
 
-import static android.os.Build.VERSION_CODES.R;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -21,7 +19,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.cat3.R;
 import com.example.cat3.databinding.FragmentMonitoringBinding;
 import com.example.cat3.user.Notification;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +33,8 @@ public class MonitoringFragment extends Fragment {
     private DatabaseReference floodSensorReference;
 
     private DatabaseReference accelerometerReference;
+    private DatabaseReference boolReference;
+    private ValueEventListener boolValueEventListener;
     private ValueEventListener waterLevelValueEventListener;
     private ValueEventListener accelerometerValueEventListener;
 
@@ -56,6 +55,7 @@ public class MonitoringFragment extends Fragment {
         // Initialize Firebase database reference
         floodSensorReference = FirebaseDatabase.getInstance().getReference().child("FloodSensor").child("WaterLevel");
         accelerometerReference = FirebaseDatabase.getInstance().getReference().child("accelerometer");
+        boolReference = accelerometerReference.child("Bool");
 
         // Create a ValueEventListener to listen for changes in the database
         waterLevelValueEventListener = new ValueEventListener() {
@@ -106,10 +106,28 @@ public class MonitoringFragment extends Fragment {
             }
         };
 
+        boolValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    int boolValue = dataSnapshot.getValue(Integer.class);
+                    if (boolValue == 1) {
+                        makeEarthquakeNotification();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        };
+
+
         // Add the ValueEventListener to the database reference
         floodSensorReference.addValueEventListener(waterLevelValueEventListener);
         accelerometerReference.addValueEventListener(accelerometerValueEventListener);
-
+        boolReference.addValueEventListener(boolValueEventListener);
         return root;
     }
 
@@ -135,12 +153,17 @@ public class MonitoringFragment extends Fragment {
             accelerometerReference.removeEventListener(accelerometerValueEventListener);
         }
         binding = null;
+
+        if (boolReference != null && boolValueEventListener != null) {
+            boolReference.removeEventListener(boolValueEventListener);
+        }
     }
 
     public void makeNotificationWL() {
         String channelID = "CHANNEL_ID_NOTIFICATION";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), channelID);
-        builder.setContentTitle("Danger! Water Level Exceeded")
+        builder.setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setContentTitle("Danger! Water Level Exceeded")
                 .setContentText("Seek High Ground Immediately..")
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -172,7 +195,8 @@ public class MonitoringFragment extends Fragment {
     private void makeEarthquakeNotification() {
         String channelID = "CHANNEL_ID_EARTHQUAKE";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), channelID);
-        builder.setContentTitle("Earthquake Detected")
+        builder.setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setContentTitle("Earthquake Detected")
                 .setContentText("Take cover and stay safe!")
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
