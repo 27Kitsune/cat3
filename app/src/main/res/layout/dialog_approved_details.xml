@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="119dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -47,22 +47,29 @@
 
             <!-- Add buttons for Approve and Deny at the bottom right -->
             <LinearLayout
-                android:layout_width="214dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@+id/imageEvent3"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btnVolunteer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#43A047"
+                    android:text="Volunteer"
+                    android:textColor="@android:color/white" />
 
                 <Button
                     android:id="@+id/btnDeny3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
-                    android:text="REMOVE"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="#E53935"
-                    android:textColor="@android:color/white"/>
+                    android:text="REMOVE"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

@@ -1,4 +1,4 @@
-package com.example.cat3.ui.volunteeradmin;
+package com.example.cat3.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,15 +12,13 @@ import com.example.cat3.ui.volunteer.VolunteerData;
 
 import java.util.List;
 
-public class AdminEventAdapter extends BaseAdapter {
+public class EventAdapter extends BaseAdapter {
     private List<VolunteerData> eventList;
     private Context context;
-    private VolunteeradminFragment volunteeradminFragment;
 
-    public AdminEventAdapter(Context context, List<VolunteerData> eventList, VolunteeradminFragment fragment) {
+    public EventAdapter(Context context, List<VolunteerData> eventList) {
         this.context = context;
         this.eventList = eventList;
-        this.volunteeradminFragment = fragment;
     }
 
     @Override
@@ -41,7 +39,7 @@ public class AdminEventAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.admin_list_item_event, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_event, parent, false);
         }
 
         VolunteerData volunteerData = eventList.get(position);
@@ -56,31 +54,16 @@ public class AdminEventAdapter extends BaseAdapter {
             textLocation.setVisibility(View.GONE);
         }
 
-        // Set click listener
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle item click
-                volunteeradminFragment.showEventDetailsPopup(volunteerData);
-            }
-        });
-
         return convertView;
     }
 
-    // Custom method to remove an event from the adapter
-    public void removeEvent(VolunteerData volunteerData) {
-        eventList.remove(volunteerData);
-        notifyDataSetChanged();
-    }
-
     // Custom methods for data management
-    public void add1(VolunteerData volunteerData) {
+    public void add(VolunteerData volunteerData) {
         eventList.add(volunteerData);
         notifyDataSetChanged();
     }
 
-    public void clear1() {
+    public void clear() {
         eventList.clear();
         notifyDataSetChanged();
     }
